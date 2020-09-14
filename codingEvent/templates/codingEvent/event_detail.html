@@ -1,0 +1,93 @@
+{% extends "codingEvent/layout.html" %}
+{% load static %}
+
+{% block title %}
+Event Detail
+{% endblock%}
+
+{% block body %}
+
+<div class="event-detail-header">
+    <h2 class='text-center'> <i class="far fa-calendar-alt"></i> Event: {{event.title}}</h2>
+ 
+    <div class="mt-3 text-center d-flex justify-content-center">
+        <div>
+            <img class="mr-4 img-detail card-img-top" src={{event.image}} alt="Card image cap"/> 
+        </div>
+
+        <div id="activeNote" class='align-self-center'>
+            {% if event.active %}
+                <p class='alert alert-success'>open</p>
+            {% else %}
+                <p class='alert alert-danger'>close</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if event.owner == user %}
+        <button id='closeEvent' data-eventid={{event.id}} class='btn btn-danger'>Close Event</button>
+    {% elif event.active %}
+        <div id="goingAndPlaning">
+            <button id='going' data-user={{user.username}} data-eventid={{event.id}} 
+            {% if interest.going %}
+                class="btn btn-warning mr-3">Cancel Going</button>
+            {% else %}
+                class="btn btn-primary mr-3">Going</button>
+            {% endif %}
+
+            <button id='planing' data-user={{user.username}} data-eventid={{event.id}} 
+            {% if interest.planing%}
+                class="btn btn-warning">Cancel Planning</button>
+            {% else %}
+                class="btn btn-success">Planning</button>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+
+
+<div class="mt-3 event-detail-content">
+    <h4>Hosted by: {{event.owner}}</h4>
+    <h4>Start Date: {{event.startingAt}}</h4>
+    <h4 class='event-text mb-2'>Participant(s): <span id='seatTaken'> {{event.seatTaken}} </span></h4>
+
+    <!-- embed video from youtube -->
+    <div class="mt-4 youtube-video embed-responsive embed-responsive-16by9">
+        <iframe width="560" height="315" src={{event.video}} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    
+    <h4 class='event-text mt-4'>Category: {{event.category}} </h4>
+    <h4 class='event-text my-4'>Location: {{event.location}} </h4>
+    <h4 class='text-center mb-3'>Description:</h4>
+    <p class='text-center border border-secondary description'>{{event.description}}</p>
+</div>
+
+
+<div class="row justify-content-around mb-5">
+    <div class="col-sm-4 card border-primary">
+        <div class="card-header"> <h5 class="pt-2 card-title text-center text-primary">Attendee:</h5></div>
+        <div class="card-body text-center">
+            <div id="oldAttendee">
+                {% for i in attendee %}
+                <li><i class="fas fa-user-circle mr-1"></i> {{i.owner}}</li>
+                {% endfor %}
+            </div>
+            <div id="newAttendee"></div>
+        </div>
+    </div>
+    
+    <div class="col-sm-4 card border-success">
+        <div class="card-header"> <h5 class="pt-2 card-title text-center text-success">Interested:</h5></div>
+        <div class="card-body text-center">
+            <div id="oldPlanner">
+                {% for i in planner %}
+                    <li><i class="fas fa-user-circle mr-1"></i> <span>{{i.owner}}</span></li>
+                {% endfor %}
+            </div>
+            <div id="newPlanner"></div>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

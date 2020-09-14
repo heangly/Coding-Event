@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+
+        <!-- bootstrap4 -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- font-awesome 5 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+        <!-- custom css -->
+        <link href="{% static 'codingEvent/css/styles.css' %}" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <section id="header">
+            <nav id='navbar' class="navbar navbar-expand-xl navbar-dark bg-info">
+                <a class="ml-5 navbar-brand" href="{% url 'index' %}"><i class="fas fa-code"></i> Coding Events</a>
+
+                <button id='collapsedBtn' class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar top-bar bg-white"></span>
+                    <span class="icon-bar middle-bar bg-white"></span>
+                    <span class="icon-bar bottom-bar bg-white"></span>				
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav ml-auto text-center">
+                    {% if user.is_authenticated %}
+                    <li id='nav-user'class="nav-item active">
+                        <a class="my-user nav-link px-3" href="#"> <i class="far fa-user"></i> {{user}}</a>
+                    </li>
+                    {% endif %}
+
+                    <li class="nav-item {% if nbar == 'home' %}active{% endif %}">
+                      <a class="nav-link" href="{% url 'index' %}">All Events</a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                        <li class="nav-item {% if nbar == 'going' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'going' %}">Going</a>
+                        </li>
+                        <li class="nav-item {% if nbar == 'planing' %}active{% endif %} ">
+                            <a class="nav-link" href="{% url 'planing' %}">Planning</a>
+                        </li>
+
+                        <li class="nav-item {% if nbar == 'create' %}active{% endif %} ">
+                            <a class="nav-link" href="{% url 'create_event' %}">Create Event</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item {% if nbar == 'login' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item {% if nbar == 'register' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                        
+                    {% endif %}
+   
+                  </ul>
+                </div>
+                
+              </nav>
+        </section>
+
+
+        <section id='content' class='content-wrap'>
+            <div class="body container mt-5">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </section>
+
+        <section id='footer' class='mt-5 py-2 bg-info text-center'>
+            <p class='pt-3'> Built by: Heang Ly</p>
+            <p> Copyright &copy; <span id='year'></span> All Rights Reserved</p>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!-- custom JS -->
+        <script src="{% static 'codingEvent/js/index.js' %}"></script>
+    </body>
+</html>

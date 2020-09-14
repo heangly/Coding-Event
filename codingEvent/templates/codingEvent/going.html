@@ -1,0 +1,40 @@
+{% extends "codingEvent/layout.html" %}
+{% load static %}
+
+{% block title %}
+Going
+{% endblock%}
+
+{% block body %}
+  <div class="going-event-title text-center">
+    <h1> <i class="far fa-map"></i> Going Events</h>
+  </div>
+
+  <div class="all-event row mt-3">
+  {% for i in events %}
+    {% if i.event.active %}
+    <div class="card">
+      <img class="card-img-top" src={{i.event.image}} alt="Card image cap">
+      <div class="card-body">
+          <h5 class="event-title text-center">{{i.event.title}} 
+              {% if i.event.active %}
+                  <small class='event-active'>open</small>
+              {% else %}
+                  <small class='event-inactive'>close</small>
+              {% endif %}
+          </h5>
+          <p class='event-text text-center'>Start date: {{i.event.startingAt}}</p>
+          <button data-eventid={{i.event.id}}  class='cancelGoing btn btn-block mt-2 btn-warning'>Cancel</button>
+      </div>
+    </div>
+    {% endif %}
+  {% endfor %}
+  </div>
+
+<div class="py-5">
+  
+</div>
+
+
+
+{% endblock %}

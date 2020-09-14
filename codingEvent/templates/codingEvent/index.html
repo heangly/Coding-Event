@@ -1,0 +1,78 @@
+{% extends "codingEvent/layout.html" %}
+{% load static %}
+
+{% block title %}
+Coding Events
+{% endblock%}
+
+{% block body %}
+<div id="main-header">
+    <h2> <i class="far fa-calendar-alt"></i> All Events</h2>
+    <div id="sortCategory">
+        <select id='category' name='category' class="form-control" id="category">
+            <option>All</option>
+            <option>Web development</option>
+            <option>Mobile development</option>
+            <option>Database</option>
+            <option>AI</option>
+            <option>Database</option>
+            <option>Cloud</option>
+            <option>Algorithm</option>
+            <option>Desktop application</option>
+            <option>Other</option>
+        </select>
+    </div>
+</div>
+
+
+<div id="events-container">
+    <div class="all-event row">
+    {% for event in events %}
+        <div class="card" id="{{event.category}}">
+            <img class="card-img-top" src={{event.image}} alt="Card image cap">
+            <div class="card-body">
+                <h5 class="event-title">{{event.title}} 
+                    {% if event.active %}
+                        <small class='event-active'>open</small>
+                    {% else %}
+                        <small class='event-inactive'>close</small>
+                    {% endif %}
+                </h5>
+                <p class='event-text'>Start date: {{event.startingAt}}</p>
+                <p class='event-text by'>Hosted by: {{event.owner}}</p>
+                <p class='event-text event-category'>Category: {{event.category}} </p>
+                <p class='event-text'>Participant(s): {{event.seatTaken}}</p>
+                <p class='event-text'>Location: {{event.location}}</p>
+                {% if user.is_authenticated %}
+                    <a id='event-detail' href="{% url 'event_detail' event.id %}" class="mt-2 btn btn-sm btn-primary "><i class="far fa-question-circle"></i> Learn more</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+</div>
+
+<!-- Pagination -->
+<div class="d-flex justify-content-end my-5 pagination">
+    <span class="step-links">
+        {% if events.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ events.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ events.number }} of {{ events.paginator.num_pages }}
+        </span>
+
+        {% if events.has_next %}
+            <a href="?page={{ events.next_page_number }}">next</a>
+            <a href="?page={{ events.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+{% endblock %}

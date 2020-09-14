@@ -1,0 +1,66 @@
+{% extends "codingEvent/layout.html" %}
+{% load static %}
+
+{% block title %}
+Create event
+{% endblock%}
+
+{% block body %}
+    <div id="create-event-container">
+        
+      <form id='create-event' action="{% url 'create_event' %}" method='POST'>
+        <h2 class='text-center mb-3'><i class="far fa-calendar-plus"></i> Create Event</h2>
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="title">Event Title:</label>
+            <input name='title' type="text" class="form-control" id="title" required>
+        </div>
+
+        <div class="form-group">
+            <label for="startingDate">Date:</label>
+            <input type='date' name='date' class="form-control" id="startingDate" required>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Image URL:</label>
+            <input name='image' type="text" class="form-control" id="image" placeholder="optional">
+        </div>
+
+        <div class="form-group">
+            <label for="video">Video URL:</label>
+            <input name='video' type="text" class="form-control" id="video" placeholder="optional">
+        </div>
+
+        <div class="form-group">
+            <label for="category">Choose Category:</label>
+            <select name='category' class="form-control" id="category">
+                <option>Web development</option>
+                <option>Mobile development</option>
+                <option>Database</option>
+                <option>AI</option>
+                <option>Database</option>
+                <option>Cloud</option>
+                <option>Algorithm</option>
+                <option>Desktop application</option>
+                <option>Other</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input name='location' type="text" class="form-control" id="location" placeholder='City, State'required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea name='description' class="form-control" id="description" rows="2" required></textarea>
+        </div>
+
+
+        <button class="btn btn-primary">Create</button>
+
+      </form>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "codingEvent/layout.html" %}
+{% load static %}
+
+{% block title %}
+Planing
+{% endblock%}
+
+{% block body %}
+  <div class='mb-5'>
+    <h1 class='text-center mb-5'><i class="far fa-calendar-check"></i> Planning</h1>
+    <h3><i class="far fa-star"></i> Important</h3>
+    <div class="important-sections">
+      {% for i in events %}
+      {% if i.planingImportant and i.event.active %}
+        <div id='important-content' class="planing-content mx-auto mb-3">
+            <div class="each-planing">
+              <ul class="list-group">
+                <li id='list-group-item' class="list-group-item d-flex justify-content-around">
+                  <img src={{i.event.image}} style='width:5rem'/>
+                  <span class='align-self-center'> <strong> {{i.event.title}}</strong></span>
+                  <span class='planing-item align-self-center'><strong>Start Date:</strong> {{i.event.startingAt}}</span>
+                  <span class='planing-item align-self-center'><strong>Participant(s):</strong> {{i.event.seatTaken}}</span>
+                  <select data-eventid={{i.event.id}} name='planing-important' class="form-control align-self-center planing-important">
+                    <option>Important</option>
+                    <option>Not Important</option>
+                  </select>
+                  <button data-eventid={{i.event.id}} class='delete-plan align-self-center btn btn-danger btn-sm' style='height:2rem;width:1.8rem'> X</button>
+                </li>
+              </ul>
+            </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+
+      <hr>
+
+      <h3><i class="far fa-list-alt"></i> Not Important</h3>
+      <div class="not-important-section">
+        {% for i in events %}
+        {% if not i.planingImportant and i.event.active %}
+          <div id='important-content' class="planing-content mx-auto mb-3">
+              <div class="each-planing">
+                <ul class="list-group">
+                  <li id='list-group-item' class="list-group-item d-flex justify-content-around">
+                    <img src={{i.event.image}} style='width:5rem'/>
+                    <span class='align-self-center'> <strong> {{i.event.title}}</strong></span>
+                    <span class='planing-item align-self-center'><strong>Start Date:</strong> {{i.event.startingAt}}</span>
+                    <span class='planing-item align-self-center'><strong>Participant(s):</strong> {{i.event.seatTaken}}</span>
+                    <select data-eventid={{i.event.id}} name='planing-important' class="form-control align-self-center planing-important">
+                      <option>Not Important</option>
+                      <option>Important</option>
+                    </select>
+                    <button data-eventid={{i.event.id}} class='delete-plan align-self-center btn btn-danger btn-sm' style='height:2rem;width:1.8rem'> X</button>
+                  </li>
+                </ul>
+              </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+  
+  </div>
+
+  <div class="pb-5"></div>
+
+{% endblock %}

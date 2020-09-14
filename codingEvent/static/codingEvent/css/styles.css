@@ -1,0 +1,253 @@
+  /* =========================== General  =========================== */
+ body{
+   background-color: #f9fafb;
+ }
+
+ a{
+  text-decoration: none !important;
+ }
+
+li{
+  list-style:none;
+}
+
+input:focus{
+   outline: none !important;
+ }
+
+.form-control:focus{
+  border-color: #cccccc;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+#navbarNavDropdown{
+  margin-right: 3rem;
+}
+
+#navbarNavDropdown .my-user{
+  border: 1px solid white;
+  border-radius: 50px;
+}
+
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  padding-bottom: 5.5rem;    /* Footer height */
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 6.5rem;            /* Footer height */
+}
+
+ /* =========================== Navbar  =========================== */
+#nav-user a{
+  text-transform: uppercase;
+  margin:0px 20px;
+}
+
+.navbar-toggler:focus{
+    outline: none;
+}
+
+.icon-bar {
+	width: 27px; 
+	height: 3px;
+	background-color: #B6B6B6;
+	display: block;
+	transition: all 0.2s;
+	margin-top: 4px
+}
+ 
+.navbar-toggler {
+  border: none;
+  background: transparent !important;
+}
+
+/* animation */
+.navbar-toggler .top-bar {
+  transform: rotate(45deg);
+  transform-origin: 10% 10%;
+}
+ 
+.navbar-toggler .middle-bar {
+  opacity: 0;
+}
+ 
+.navbar-toggler .bottom-bar {
+  transform: rotate(-45deg);
+  transform-origin: 10% 90%;
+}
+ 
+.navbar-toggler.collapsed .top-bar {
+  transform: rotate(0);
+}
+ 
+.navbar-toggler.collapsed .middle-bar {
+  opacity: 1;
+}
+ 
+.navbar-toggler.collapsed .bottom-bar {
+  transform: rotate(0);
+}
+
+ /* =========================== Login & Register =========================== */
+ 
+#login-form-container, #register-form-container{
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-form, #register-form{
+  background-color: #fff;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.25), 0 10px 12px rgba(0,0,0,0.20); 
+  border-radius: 15px;
+  width: 500px;
+  padding:50px;
+}
+
+/* =========================== Create Event =========================== */
+#create-event-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+ #create-event{
+  background-color: #fff;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.25), 0 10px 12px rgba(0,0,0,0.20); 
+  border-radius: 15px;
+  width: 700px;
+  padding:30px 50px;
+}
+
+
+
+/* =========================== Index =========================== */
+/* header */
+#main-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* event-card */
+.all-event{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card{
+  margin-top: 3.5rem;
+  width: 17.5rem;
+  border-radius: 15px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.25), 0 10px 12px rgba(0,0,0,0.20); 
+}
+
+.card-body{
+  margin-top: -10px;
+}
+
+.event-title{
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.event-active, .event-inactive{
+  font-size: 14px;
+  color:rgb(15, 156, 15);
+  text-transform: lowercase;
+  border: 1px solid rgb(15, 156, 15);
+  border-radius: 10px;
+  margin-left: 5px;
+  padding: 5px;
+}
+
+.event-inactive{
+  color:red;
+  border: 1px solid red;
+}
+
+
+.event-text{
+  margin:0;
+}
+
+.all-event .by{
+  text-transform: capitalize;
+}
+
+.card img{
+  height: 230px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+
+
+/* =========================== event detail =========================== */
+.alert{
+  max-width: 10rem;
+  font-size: 1.2rem;
+  padding:4px 40px;
+}
+
+.img-detail{
+  max-width: 200px;
+}
+
+.youtube-video{
+  box-shadow: 0 19px 38px rgba(0,0,0,0.25), 0 10px 12px rgba(0,0,0,0.20);
+  border-radius: 25px;
+}
+
+.description{
+  padding: 40px;
+  border-radius: 20px;
+  background-color:#fff;
+}
+
+#footer{
+  text-align: center;
+  background: #343a40;
+  color: #fff;
+  bottom: 0;
+}
+
+.planing-important{
+  width:9rem !important;
+}
+
+
+/* solution */
+@media(max-width:1199px){
+  #navbarNavDropdown{
+    margin-right: 0;
+  }
+
+  #navbarNavDropdown .my-user{
+    border:none !important;
+    margin-top: 15px;
+  }
+}
+
+@media(max-width:1199px){
+  .planing-item{
+    display: none;
+  }
+
+  .planing-important{
+    width:1rem !important;
+  }
+}
